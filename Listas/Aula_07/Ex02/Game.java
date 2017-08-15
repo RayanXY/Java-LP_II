@@ -113,13 +113,28 @@ public class Game
         }
 
         String commandWord = command.getCommandWord();
-        if (commandWord.equals("help"))
+       /* if (commandWord.equals("help"))
             printHelp();
         else if (commandWord.equals("go"))
             goRoom(command);
         else if (commandWord.equals("quit"))
             wantToQuit = quit(command);
 
+        return wantToQuit;
+        */
+        switch(commandWord){
+        
+        	case "help":
+        		printHelp();
+        		break;
+        	case "go":
+        		goRoom(command);
+        		break;
+        	case "quit":
+        		wantToQuit = quit(command);
+        		break;
+        }
+        
         return wantToQuit;
     }
 
