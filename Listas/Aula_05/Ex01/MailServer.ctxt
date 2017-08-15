@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=MailServer()
+comment0.text=\r\n\ Construct\ a\ mail\ server.\r\n
+comment1.params=who
+comment1.target=int\ howManyMailItems(java.lang.String)
+comment1.text=\r\n\ Return\ how\ many\ mail\ items\ are\ waiting\ for\ a\ user.\r\n\ @param\ who\ The\ user\ to\ check\ for.\r\n\ @return\ How\ many\ items\ are\ waiting.\r\n
+numComments=2
