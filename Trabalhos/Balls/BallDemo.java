@@ -41,7 +41,7 @@ public class BallDemo{
         
         int ground = h - 35;   // position of the ground line
         int xStart = 50;       // x-start of the ground line
-        int xLimit = w - 50;   // x-limit of the ground line
+        int xLimit = w;   // x-limit of the ground line
 
         myCanvas.setVisible(true);
 
@@ -60,7 +60,7 @@ public class BallDemo{
             for(int i = 0; i < numberOfBalls; i++){
 
                 // Random position
-                int xPos = rand.nextInt(w)+1; 
+                int xPos = rand.nextInt(w-50)+50; 
                 int yPos = rand.nextInt(h/2) - 20;
 
                 // Random color
