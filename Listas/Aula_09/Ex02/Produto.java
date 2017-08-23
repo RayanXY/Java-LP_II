@@ -32,7 +32,7 @@ public class Produto{
 	public String getNome(){
 		return nome;
 	}
-	public int getPreco(){
+	public double getPreco(){
 		return preco;
 	}
 	public String getMarca(){

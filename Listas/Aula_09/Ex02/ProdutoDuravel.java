@@ -4,7 +4,7 @@ public class ProdutoDuravel extends Produto{
 	
 	public ProdutoDuravel(String nome, double preco, String marca, String descricao, String data_fabricacao, String material_pred, String durabilidade){
 	
-		super(nome, preco, marca, descricao, data_fabricacao)
+		super(nome, preco, marca, descricao, data_fabricacao);
 		this.material_pred = material_pred;
 		this.durabilidade = durabilidade;
 	
