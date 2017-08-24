@@ -63,11 +63,12 @@ public class Veiculos{
 			return "Disponível";
 		}
 	}
-	public String vencimento(Calendar c){
-		return null;
+	public Calendar vencimento(Calendar c){
+		return c;
 	}
+	
 	public double devolucao(Calendar c){
-		return null;
+		return 0.0;
 	}
 	public double custo(){
 		return 0.0;

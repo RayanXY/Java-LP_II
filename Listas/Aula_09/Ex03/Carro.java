@@ -1,5 +1,4 @@
 import java.util.Calendar;
-import java.text.SimpleDateFormat;
 
 public class Carro extends Veiculos{
 
@@ -37,7 +36,7 @@ public class Carro extends Veiculos{
 		return c;
 	}
 	public double devolucao(Calendar data_pagamento){
-		
+		return 0.0;
 	}
 	
 	public double custo(){

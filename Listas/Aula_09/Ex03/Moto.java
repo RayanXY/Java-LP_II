@@ -1,5 +1,4 @@
 import java.util.Calendar;
-import java.text.SimpleDateFormat;
 
 public class Moto extends Veiculos{
 
@@ -29,13 +28,9 @@ public class Moto extends Veiculos{
 		return cilindradas;
 	}
 	
-	public String vencimento(Calendar atual){
-		SimpleDateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
-		Calendar vencimento = atual;
-		vencimento.add(Calendar.DATE, 3);
-		String data = dF.format(vencimento.getTime());
-		
-		return data;
+	public Calendar vencimento(Calendar c){
+		c.add(Calendar.DATE, 3);
+		return c;
 	}
 	
 	public double custo(){
