@@ -1,4 +1,5 @@
 import java.util.Calendar;
+
 /**
  * This class represents simple vehicle model. With the maker,
  * model and license plate. To help the rent company, I added 
@@ -8,7 +9,6 @@ import java.util.Calendar;
  * @author Rayan Avelino
  * @version 23.08.2017
  */
-
 public class Veiculos{
 
 	private String marca, modelo, placa; 	/// Brand/Maker, model and license plate.

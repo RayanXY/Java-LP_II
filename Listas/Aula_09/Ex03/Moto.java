@@ -1,4 +1,5 @@
 import java.util.Calendar;
+
 /**
  * This class represents simple motocycle model. It is an extension
  * of the Veiculo class, inheriting its attributes and adding the 
@@ -7,7 +8,6 @@ import java.util.Calendar;
  * @author Rayan Avelino
  * @version 23.08.2017
  */
-
 public class Moto extends Veiculos{
 
 	private String partida; 	/// Type of start.

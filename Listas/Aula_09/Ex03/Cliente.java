@@ -7,8 +7,8 @@
  */
 public class Cliente{
 
-	private String nome;	/// Driver's name.
-	private int carteira;	/// Driver's license.
+	private String nome;	//!< Driver's name.
+	private int carteira;	//!< Driver's license.
 	
 	/**
 	 * Creates a client.

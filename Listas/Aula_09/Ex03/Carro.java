@@ -10,8 +10,8 @@ import java.util.Calendar;
  */
 public class Carro extends Veiculos{
 
-	private double potencia;	/// The power of the car.
-	private int quant_portas;	/// The number of doors.
+	private double potencia;	//!< The power of the car.
+	private int quant_portas;	//!< The number of doors.
 	
 	/**
 	 * Creates a car.

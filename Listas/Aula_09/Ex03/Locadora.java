@@ -4,17 +4,17 @@ import java.text.SimpleDateFormat;
 
 /**
  * This class represents simple rent company. It creates a list
- * of the vehicles, rents them, prints receipt and receve the vehicle back.
+ * of vehicles, rents them, prints receipt and receve the vehicle back.
  *
  * @author Rayan Avelino
  * @version 23.08.2017
  */
 public class Locadora{
 
-	private ArrayList<Veiculos> veiculos;	/// List to store the vehicles.
+	private ArrayList<Veiculos> veiculos;	//!< List to store vehicles.
 	
 	/**
-	 * Creates a list to store the vehicles.
+	 * Creates a list to store vehicles.
 	 */
 	public Locadora(){
 		
