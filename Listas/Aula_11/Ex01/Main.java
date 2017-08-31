@@ -30,7 +30,7 @@ public class Main{
 			}
 			c.printData();
 		}
-		System.out.println("There are(is) " + fisical + " fisical client(s) and there are(is) " + legal + " client(s)");
+		System.out.println("There are(is) " + fisical + " fisical client(s) and there are(is) " + legal + " legal client(s)");
 	
 	}
 
