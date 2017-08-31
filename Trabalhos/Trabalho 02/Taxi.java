@@ -43,6 +43,9 @@ public class Taxi extends Vehicle{
         free = true;
     }
 
+	/**
+	 * @return If the taxi is free or not.
+	 */
     public boolean available(){
     	return free;
     }

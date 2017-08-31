@@ -61,18 +61,16 @@ public class Shuttle extends Vehicle{
         setNextDestination();
     }
 
-    public int onRoute(String destination){
-
-    	int destin = route.indexOf(destination);
-    	int origin = route.indexOf(getLocation());
-
-    	if(origin < destin){
-    		return destin;
-    	}else{
-    		return -1;
-    	}
-
-
+	/**
+	 * @return If the shuttle is headed for the destination requested.
+	 * @param requestDestination - The destination requested by the client.
+	 */
+    public boolean onRoute(String requestDestination){
+		String shuttleDestination = super.getDestination();
+		if(shuttleDestination.equals(requestDestination)){
+			return true;
+		}
+		return false;
     }
 
 }

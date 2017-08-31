@@ -28,7 +28,7 @@ public class TaxiCo{
     public TaxiCo(String name){
 
         companyName = name;
-        base = "base";
+        base = "Terminal";
         fleet = new ArrayList<Vehicle>();
         nextID = 1;
         destinations = new ArrayList<String>();
@@ -52,9 +52,6 @@ public class TaxiCo{
      * An arbitrary route is assigned to it.
      */
     public void addShuttle(){
-        // Sanity warning:
-        // The following is a thoroughly contrived way to create a route!
-        
         // Create a random list of destinations for its route.
         Collections.shuffle(destinations);
         ArrayList<String> route = new ArrayList<String>();
@@ -65,7 +62,6 @@ public class TaxiCo{
         for(int i = 0; i < ROUTE_LENGTH; i++) {
             route.add(destinations.get(i));
         }
-        
         Shuttle shuttle = new Shuttle("Shuttle #" + nextID, route);
         fleet.add(shuttle);
         // Increment the ID for the next one.
@@ -117,15 +113,23 @@ public class TaxiCo{
         destinations.add("Darwin");
     }
 
+	/**
+	 * Search for a vehicle that can drop the client at his destination.
+	 * @param destination - Where the client want to go.
+	 */
     public Vehicle clientRequest(String destination){
-
+		/// Searching for the Shuttle first.
         for(Vehicle vehicle : fleet){
             if(vehicle instanceof Shuttle){
                 Shuttle shuttle = (Shuttle) vehicle;
-                if(shuttle.onRoute(destination) != -1){
+                if(shuttle.onRoute(destination)){
                     return vehicle;
                 }
-            }else{
+            }
+        }
+        /// Now searching for a Taxi.
+        for(Vehicle vehicle : fleet){
+        	if(vehicle instanceof Taxi){
                 Taxi taxi = (Taxi) vehicle;
                 if(taxi.available()){
                     return vehicle;
@@ -133,7 +137,6 @@ public class TaxiCo{
             }
         }
         return null;
-
     }
 
 }

@@ -34,7 +34,6 @@ public class Helper{
      * Test whether we can book a taxi.
      */
 	public void testBook(){
-
 		setUp();
 		Taxi taxi1 = (Taxi) taxiCo1.lookup("Car #1");		
 		taxi1.book("HIPER");
@@ -43,6 +42,7 @@ public class Helper{
 		}else{ 
 			System.out.println("> Alguma coisa errada");
 		}
+		
 		Taxi taxi2 = (Taxi) taxiCo1.lookup("Car #2");		
 		taxi2.book("Olho d'Água do Borges");
 		if ("Olho d'Água do Borges".equalsIgnoreCase(taxi2.getDestination()) ) {
@@ -50,24 +50,20 @@ public class Helper{
 		}else{ 
 			System.out.println("> Alguma coisa errada");
 		}
-
-
 	}
 
 	/**
 	 * Test the status of a taxi after it has arrived.
 	 */
-	public void testArrived(){
-
-		Taxi taxi1 = (Taxi) taxiCo1.lookup("Car #1");
-		taxi1.book("HIPER");
+	public void testArrived(){		
+		Taxi taxi2 = (Taxi) taxiCo1.lookup("Car #2");
+		taxi1.book("Olho d'Água do Borges");
 		taxi1.arrived();
-		if ( taxi1.getDestination() == null && "HIPER".equalsIgnoreCase(taxi1.getLocation()) ) {
+		if ( taxi1.getDestination() == null && "Olho d'Água do Borges".equalsIgnoreCase(taxi1.getLocation()) ) {
 			System.out.println("> Funcionou");
 		}else{ 
 			System.out.println("> Alguma coisa errada");
 		}
-
 	}
 
 	public void testStatus(){
@@ -77,9 +73,9 @@ public class Helper{
 	public void testClient(String destination){
 		Vehicle vehicle = taxiCo1.clientRequest(destination);
 		if(vehicle == null){
-			System.out.println("There are no cars available right now.");
+			System.out.println("> There are no cars available right now.");
 		}else{
-			System.out.println("The " + vehicle.getID() + " is going to your destination.");
+			System.out.println("> The " + vehicle.getID() + " is going to your destination.");
 		}
 	}
 
@@ -90,14 +86,14 @@ public class Helper{
 		System.out.println(">>> First test:");
 		helper.testBook();
 		
-		//System.out.println(">>> Second test:");
-		//helper.testArrived();
+		System.out.println(">>> Second test:");
+		helper.testArrived();
 
 		System.out.println(">>> Third test:");
 		helper.testStatus();
 
 		System.out.println(">>> Fourth test:");
-		helper.testClient("Canterbury East");
+		helper.testClient("Whitstable");
 
 	}
 }
