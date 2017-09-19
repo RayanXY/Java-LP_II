@@ -26,7 +26,7 @@ public class Appointment{
 	}
 	
 	public String toString(){
-		return "> STATUS: " + status + "\n" + animal.toString();
+		return "> STATUS: " + status + "\n" + animal;
 	}
 
 }
