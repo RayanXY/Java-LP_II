@@ -58,6 +58,6 @@ public abstract class ProdutoNaoDuravel extends Produto{
 		return genero;
 	}
 
-	public abstract boolean isValid(String )
+	public abstract boolean isValid(String date);
 	
 }

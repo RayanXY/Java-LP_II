@@ -1,3 +1,5 @@
 #Ignore this type of file
+./Eclipse
+*.mp3
 *.zip
 *.class

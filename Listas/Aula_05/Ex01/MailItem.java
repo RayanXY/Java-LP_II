@@ -1,5 +1,5 @@
 /**
- * A class to model a simple mail item. The item has sender and recipient
+ * A class to model a simple mail item. The item has sender and recipient.
  * addresses and a message string.
  * @author David J. Barnes and Michael Kolling
  * @version 2008.03.30
