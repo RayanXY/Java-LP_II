@@ -6,13 +6,14 @@
  * @author Rayan Avelino
  * @version 23.08.2017
  */
-public class Pizza extends ProdutoDuravel{
+public class Pizza extends ProdutoNaoDuravel{
 
 	private String sabor;
 	private int fatias;
 	
 	/**
 	 * Creates a pizza.
+	 * @param id - The pizza's id.
 	 * @param nome - The product's name.
 	 * @param preco - The product's price.
 	 * @param marca - The product's brand.
@@ -23,9 +24,9 @@ public class Pizza extends ProdutoDuravel{
 	 * @param sabor - The product's flavor.
 	 * @param fatias - The product's number of slices.
 	 */
-	public Pizza(String nome, double preco, String marca, String descricao, String data_fabricacao, String validade, String genero, String sabor, int fatias){
+	public Pizza(int id, String nome, double preco, String marca, String descricao, String data_fabricacao, String validade, String genero, String sabor, int fatias){
 		
-		super(nome, preco, marca, descricao, data_fabricacao, validade, genero);
+		super(id, nome, preco, marca, descricao, data_fabricacao, validade, genero);
 		this.sabor = sabor;
 		this.fatias = fatias;
 		
@@ -66,6 +67,18 @@ public class Pizza extends ProdutoDuravel{
 	 */
 	public void comer(){
 		fatias--;
+	}
+
+	public void valido(boolean damaged){
+		if(damaged){
+			super.setValid(true);
+		}else{
+			super.setValid(false);
+		}
+	}
+
+	public void sold(){
+		super.setSold(true);
 	}
 
 }

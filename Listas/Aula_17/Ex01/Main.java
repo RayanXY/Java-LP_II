@@ -2,7 +2,7 @@ public class Main{
 
 	public static void main(String [] args){
 	
-		Produto prod = new Produto(11, "Coca", "Coca-Cola", "Refrigerante", "31/12/17");
+		//Produto prod = new Produto(11, "Coca", "Coca-Cola", "Refrigerante", "31/12/17");
 
 		/*
 		/// Creating a warehouse.

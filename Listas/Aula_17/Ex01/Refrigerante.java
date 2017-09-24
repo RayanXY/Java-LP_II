@@ -6,13 +6,14 @@
  * @author Rayan Avelino
  * @version 23.08.2017
  */
-public class Refrigerante extends ProdutoDuravel{
+public class Refrigerante extends ProdutoNaoDuravel{
 
 	private double litros;
 	private String sabor;
 	
 	/**
 	 * Creates a soda.
+	 * @param id - The soda's id.
 	 * @param nome - The soda's name.
 	 * @param preco - The soda's price.
 	 * @param marca - The soda's brand.
@@ -23,9 +24,9 @@ public class Refrigerante extends ProdutoDuravel{
 	 * @param litros - The soda's liters.
 	 * @param sabor - The soda's flavor.
 	 */
-	public Refrigerante(String nome, double preco, String marca, String descricao, String data_fabricacao, String validade, String genero, double litros, String sabor){
+	public Refrigerante(int id, String nome, double preco, String marca, String descricao, String data_fabricacao, String validade, String genero, double litros, String sabor){
 		
-		super(nome, preco, marca, descricao, data_fabricacao, validade, genero);
+		super(id, nome, preco, marca, descricao, data_fabricacao, validade, genero);
 		this.litros = litros;
 		this.sabor = sabor;
 		
@@ -66,6 +67,18 @@ public class Refrigerante extends ProdutoDuravel{
 	 */
 	public void beber(){
 		litros = litros - 0.2;
+	}
+
+	public void valido(boolean damaged){
+		if(damaged){
+			super.setValid(true);
+		}else{
+			super.setValid(false);
+		}
+	}
+
+	public void sold(){
+		super.setSold(true);
 	}
 
 }

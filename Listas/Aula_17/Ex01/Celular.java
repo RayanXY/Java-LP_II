@@ -13,6 +13,7 @@ public class Celular extends ProdutoDuravel{
 	
 	/**
 	 * Creates a cell phone.
+	 * @param id - The phone's id.
 	 * @param nome - The cell phone's name.
 	 * @param preco - The cell phone's price.
 	 * @param marca - The cell phone's brand.
@@ -23,9 +24,9 @@ public class Celular extends ProdutoDuravel{
 	 * @param creditos - The cell phone's credits.
 	 * @param sistema_op - The cell phone's operational system.
 	 */
-	public Celular(String nome, double preco, String marca, String descricao, String data_fabricacao, String material_pred, String durabilidade, double creditos, String sistema_op){
+	public Celular(int id, String nome, double preco, String marca, String descricao, String data_fabricacao, String material_pred, String durabilidade, double creditos, String sistema_op){
 		
-		super(nome, preco, marca, descricao, data_fabricacao, material_pred, durabilidade);
+		super(id, nome, preco, marca, descricao, data_fabricacao, material_pred, durabilidade);
 		this.creditos = creditos;
 		this.sistema_op = sistema_op;
 		
@@ -66,6 +67,14 @@ public class Celular extends ProdutoDuravel{
 	 */
 	public void ligar(){
 		creditos = creditos - 0.50;
+	}
+
+	public void isEletronic(){
+		super.setEletronic(true);
+	}
+
+	public void sold(){
+		super.setSold(true);
 	}
 
 }

@@ -6,13 +6,14 @@
  * @author Rayan Avelino
  * @version 23.08.2017
  */
-public class Chocolate extends ProdutoDuravel{
+public class Chocolate extends ProdutoNaoDuravel{
 
 	private int pedacos;
 	private String sabor;
 
 	/**
 	 * Creates a chocolate.
+	 * @param id - The chocolate's id.
 	 * @param nome - The chocolate's name.
 	 * @param preco - The chocolate's price.
 	 * @param marca - The chocolate's brand.
@@ -23,9 +24,9 @@ public class Chocolate extends ProdutoDuravel{
 	 * @param pedacos - The chocolate's number of pieces.
 	 * @param sabor - The chocolate's flavor.
 	 */
-	public Chocolate(String nome, double preco, String marca, String descricao, String data_fabricacao, String validade, String genero, int pedacos, String sabor){
+	public Chocolate(int id, String nome, double preco, String marca, String descricao, String data_fabricacao, String validade, String genero, int pedacos, String sabor){
 		
-		super(nome, preco, marca, descricao, data_fabricacao, validade, genero);
+		super(id, nome, preco, marca, descricao, data_fabricacao, validade, genero);
 		this.pedacos = pedacos;
 		this.sabor = sabor;
 		
@@ -66,6 +67,18 @@ public class Chocolate extends ProdutoDuravel{
 	 */
 	public void comer(){
 		pedacos--;
+	}
+
+	public void valido(boolean damaged){
+		if(damaged){
+			super.setValid(true);
+		}else{
+			super.setValid(false);
+		}
+	}
+
+	public void sold(){
+		super.setSold(true);
 	}
 
 }

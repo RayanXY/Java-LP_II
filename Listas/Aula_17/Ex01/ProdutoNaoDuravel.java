@@ -8,10 +8,12 @@
  */
 public abstract class ProdutoNaoDuravel extends Produto{
 
+	private boolean valid;
 	private String validade, genero;
 	
 	/**
 	 * Creates a durable product.
+	 * @param id - The product's id.
 	 * @param nome - The product's name.
 	 * @param preco - The product's price.
 	 * @param marca - The product's brand.
@@ -43,6 +45,14 @@ public abstract class ProdutoNaoDuravel extends Produto{
 	public void setGenero(String genero){
 		this.genero = genero;
 	}
+
+	public void setValid(boolean valid){
+		this.valid = valid;
+	}
+
+	public boolean getValid(){
+		return valid;
+	}
 	
 	/**
 	 * @return The product's validity.
@@ -58,6 +68,10 @@ public abstract class ProdutoNaoDuravel extends Produto{
 		return genero;
 	}
 
-	public abstract boolean isValid(String date);
+	public String toString(){
+		return super.toString() + "\n>>> Validade: " + this.validade + "\n>>> Gênero: " + this.genero;
+	}
+
+	public abstract void valido(boolean damaged);
 	
 }

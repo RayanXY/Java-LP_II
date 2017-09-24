@@ -8,6 +8,7 @@
  */
 public abstract class ProdutoDuravel extends Produto{
 
+	private boolean eletronic;
 	private String material_pred, durabilidade;
 	
 	/**
@@ -44,6 +45,14 @@ public abstract class ProdutoDuravel extends Produto{
 		this.material_pred = material_pred;
 	}
 
+	public void setEletronic(boolean eletronic){
+		this.eletronic = eletronic;
+	}
+
+	public boolean getEletronic(){
+		return eletronic;
+	}
+
 	/**
 	 * @return The product's predominant material.
 	 */
@@ -62,6 +71,6 @@ public abstract class ProdutoDuravel extends Produto{
 		return super.toString() + "\n>>> Material Predominante: " + this.material_pred + "\n>>> Durabilidade: " + this.durabilidade;
 	}
 
-	public abstract String eletronic();
+	public abstract void isEletronic();
 
 }

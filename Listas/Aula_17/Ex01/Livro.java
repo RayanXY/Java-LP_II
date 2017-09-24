@@ -13,6 +13,7 @@ public class Livro extends ProdutoDuravel{
 	
 	/**
 	 * Creates a book.
+	 * @param id - The book's id.
 	 * @param nome - The book's name.
 	 * @param preco - The book's price.
 	 * @param marca - The book's brand.
@@ -23,9 +24,9 @@ public class Livro extends ProdutoDuravel{
 	 * @param quantidade_pag - The book's number of pages.
 	 * @param autor - The book's author.
 	 */
-	public Livro(String nome, double preco, String marca, String descricao, String data_fabricacao, String material_pred, String durabilidade, int quantidade_pag, String autor){
+	public Livro(int id, String nome, double preco, String marca, String descricao, String data_fabricacao, String material_pred, String durabilidade, int quantidade_pag, String autor){
 		
-		super(nome, preco, marca, descricao, data_fabricacao, material_pred, durabilidade);
+		super(id, nome, preco, marca, descricao, data_fabricacao, material_pred, durabilidade);
 		this.quantidade_pag = quantidade_pag;
 		this.autor = autor;
 		
@@ -59,5 +60,13 @@ public class Livro extends ProdutoDuravel{
 	public String getAutor(){
 		return autor;
 	}
+	
+	public void isEletronic(){
+		super.setEletronic(false);
+	}
+
+	public void sold(){
+		super.setSold(true);
+	}	
 
 }

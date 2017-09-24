@@ -7,6 +7,7 @@
  */
 public abstract class Produto{
 
+	private boolean sold;
 	private int id;
 	private String nome, marca, descricao, data_fabricacao;
 	private double preco;
@@ -78,6 +79,14 @@ public abstract class Produto{
 	public void setData_fabricacao(String data_fabricacao){
 		this.data_fabricacao = data_fabricacao;
 	}
+
+	public void setSold(boolean sold){
+		this.sold = sold;
+	}
+
+	public boolean getSold(){
+		return sold;
+	}
 	
 	/**
 	 * @return The product's id.
@@ -127,6 +136,6 @@ public abstract class Produto{
 
 	}
 
-	public abstract String sold();
+	public abstract void sold();
 
 }

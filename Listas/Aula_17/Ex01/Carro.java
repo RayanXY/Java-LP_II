@@ -13,6 +13,7 @@ public class Carro extends ProdutoDuravel{
 	
 	/**
 	 * Creates a car.
+	 * @param id - The car's id.
 	 * @param nome - The car's name.
 	 * @param preco - The car's price.
 	 * @param marca - The car's brand.
@@ -23,9 +24,9 @@ public class Carro extends ProdutoDuravel{
 	 * @param kilometragem - The car's mileage.
 	 * @param color - The car's color.
 	 */
-	public Carro(String nome, double preco, String marca, String descricao, String data_fabricacao, String material_pred, String durabilidade, double kilometragem, String cor){
+	public Carro(int id, String nome, double preco, String marca, String descricao, String data_fabricacao, String material_pred, String durabilidade, double kilometragem, String cor){
 		
-		super(nome, preco, marca, descricao, data_fabricacao, material_pred, durabilidade);
+		super(id, nome, preco, marca, descricao, data_fabricacao, material_pred, durabilidade);
 		this.kilometragem = kilometragem;
 		this.cor = cor;
 		
@@ -67,6 +68,14 @@ public class Carro extends ProdutoDuravel{
 	 */
 	public void rodar(double km_percorridos){
 		kilometragem = kilometragem + km_percorridos;
+	}
+
+	public void isEletronic(){
+		super.setEletronic(false);
+	}
+
+	public void sold(){
+		super.setSold(true);
 	}
 
 }
