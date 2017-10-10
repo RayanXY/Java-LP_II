@@ -1,11 +1,11 @@
 ## LP II ##
 
-### Aula 11 ###
+### Aula 21 ###
 
 ```
 "Ex01 - Done"
 "Ex02 - Done"
-"Ex03 - Incompleted"
+"Ex03 - Not done"
 ```
 
 This codes were made by RAYAN AVELINO. ⒸAll rights reserved.
