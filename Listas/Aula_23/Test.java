@@ -1,10 +1,7 @@
-import java.util.ArrayList;
-
 public class Test{
 
 	public static void main(String [] args){
 
-		ArrayList<String> expressions = new ArrayList<String>();
 		Calculator calculator = new Calculator();
 
 		String exp1 = "15-3";
@@ -13,18 +10,12 @@ public class Test{
 		String exp4 = "15b3";
 		String exp5 = "15/0";
 
-		expressions.add(exp1);
-		expressions.add(exp2);
-		expressions.add(exp3);
-		expressions.add(exp4);
-		expressions.add(exp5);
-
-		calculator.calculate(exp4);
-/*
-		for(String s : expressions){
-			calculator.calculate(s);
+		if(calculator.validateExpression(exp1)){
+			System.out.println(calculator.solving());
+		}else{
+			System.out.println("Could not calculate");
 		}
-*/
+
 	}
 
 }

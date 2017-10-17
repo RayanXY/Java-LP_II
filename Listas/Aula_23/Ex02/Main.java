@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Main extends Exception{
 	
 	public static void main(String [] args){
-
+/*
 		Calculator calculator = new Calculator();
 		ArrayList<String> results = new ArrayList<String>();
 		float result;
@@ -35,6 +35,21 @@ public class Main extends Exception{
 
 		}catch(FileNotFoundException e){
 			System.out.println(e);
+		}catch(IOException e){
+			System.out.println(e);
+		}
+
+	}
+*/
+		try{
+
+			FileWriter writer = new FileWriter("Results");
+			writer.write("Could not calculate\n");
+			writer.write("Could not calculate\n");
+			writer.write("Could not calculate\n");
+			writer.write(5 + "\n");
+			writer.close();
+
 		}catch(IOException e){
 			System.out.println(e);
 		}
