@@ -3,8 +3,8 @@
 ### Aula 23 - Exceptions ###
 
 ```
-"Ex01 - "
-"Ex02 - "
+"Ex01 - Done"
+"Ex02 - Done"
 "Ex03 - "
 ```
 
