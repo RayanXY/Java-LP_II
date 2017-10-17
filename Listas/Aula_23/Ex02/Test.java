@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Test{
 
@@ -19,12 +21,24 @@ public class Test{
 		expressions.add(exp4);
 		expressions.add(exp5);
 
-		calculator.calculate(exp4);
-/*
-		for(String s : expressions){
-			calculator.calculate(s);
+
+		try{		
+
+			FileWriter writer = new FileWriter("Results");
+
+			for(String s : expressions){
+				if(calculator.validateExpression(s)){
+					writer.write(calculator.calculate() + "\n");			
+				}else{
+					writer.write("Could not calculate\n");
+				}
+			}
+			writer.close();
+			
+		}catch(IOException e){
+			System.out.println(e);
 		}
-*/
+
 	}
 
 }

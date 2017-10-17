@@ -8,30 +8,23 @@ import java.util.ArrayList;
 public class Main extends Exception{
 	
 	public static void main(String [] args){
-/*
-		Calculator calculator = new Calculator();
-		ArrayList<String> results = new ArrayList<String>();
-		float result;
 
+		ArrayList<String> expressions = new ArrayList<String>();
+		Calculator calculator = new Calculator();
+
+		/// Reading
 		try{		
 
 			BufferedReader reader = new BufferedReader(new FileReader("Expressions"));
 			FileWriter writer = new FileWriter("Results");
 
 			/// Reading the first line
-			String linha = reader.readLine();
+			String line = reader.readLine();
 			/// Reading the rest of the file.
-			while(linha != null){
-				results.add(linha);
-				linha = reader.readLine();
+			while(line != null){
+				expressions.add(line);
+				line = reader.readLine();
 			}
-
-			/// Calculating
-			for(String expression : results){
-				result = calculator(expression);
-				writer.write(result + "\n");
-			}
-			writer.close();
 
 		}catch(FileNotFoundException e){
 			System.out.println(e);
@@ -39,17 +32,20 @@ public class Main extends Exception{
 			System.out.println(e);
 		}
 
-	}
-*/
-		try{
+		/// Writing
+		try{		
 
 			FileWriter writer = new FileWriter("Results");
-			writer.write("Could not calculate\n");
-			writer.write("Could not calculate\n");
-			writer.write("Could not calculate\n");
-			writer.write(5 + "\n");
-			writer.close();
 
+			for(String s : expressions){
+				if(calculator.validateExpression(s)){
+					writer.write(calculator.calculate() + "\n");			
+				}else{
+					writer.write("Could not calculate\n");
+				}
+			}
+			writer.close();
+			
 		}catch(IOException e){
 			System.out.println(e);
 		}

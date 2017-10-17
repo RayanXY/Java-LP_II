@@ -4,20 +4,10 @@ public class Calculator{
 	private String op1, op2, operator;
 	private float a, b, result;
 
-	public Calculator(){
-
-		i = 0;
-		operatorSignal = 0;
-		op1 = "";
-		op2 = "";
-		operator = "";
-		a = 0;
-		b = 0;
-		result = 0;
-
-	}
-
+	/// Checks the character is an operator
 	public boolean isOperator(String operator){
+
+		operatorSignal = 0;
 
 		if(operator.equals("+")){
 			operatorSignal = 1;
@@ -37,11 +27,19 @@ public class Calculator{
 
 	}
 	
+	/// Validates the expression
 	public boolean validateExpression(String expression){
 
+		i = 0;
 		int size = expression.length();
 
+		/// If it is a blank line
+		if(expression.isEmpty()){
+			return false;
+		}
+
 		/// First part	
+		op1 = "";
 		while(i < size){
 			if(Character.isDigit(expression.charAt(i))){
 				op1 += Character.toString(expression.charAt(i));
@@ -55,6 +53,7 @@ public class Calculator{
 		}
 
 		/// Second part
+		op2 = "";
 		while(i < size){
 		 	if(Character.isDigit(expression.charAt(i))){
 				op2 += Character.toString(expression.charAt(i));
@@ -76,29 +75,28 @@ public class Calculator{
 
 	}
 
-	public void calculate(String expression){
+	public float calculate(){
 
-		if(validateExpression(expression)){
+		a = 0;
+		b = 0;
+		result = 0;
 
-			a = Float.parseFloat(op1);
-			b = Float.parseFloat(op2);
+		/// Converting the parts of the expression
+		a = Float.parseFloat(op1);
+		b = Float.parseFloat(op2);
 
-			if(operatorSignal == 1){
-				result = a + b;
-			}else if(operatorSignal == 2){
-				result = a - b;
-			}else if(operatorSignal == 3){
-				result = a * b;
-			}else if(operatorSignal == 4){
-				result = a / b;
-			}
-
-			System.out.println(result);
-
-		}else{
-			System.out.println("Could not calculate");
+		/// Finding the operation to be calculated
+		if(operatorSignal == 1){
+			result = a + b;
+		}else if(operatorSignal == 2){
+			result = a - b;
+		}else if(operatorSignal == 3){
+			result = a * b;
+		}else if(operatorSignal == 4){
+			result = a / b;
 		}
 
+		return result;
 
 	}
 
