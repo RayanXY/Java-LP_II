@@ -1,7 +1,7 @@
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -16,7 +16,6 @@ public class Main extends Exception{
 		try{		
 
 			BufferedReader reader = new BufferedReader(new FileReader("Expressions"));
-			FileWriter writer = new FileWriter("Results");
 
 			/// Reading the first line
 			String line = reader.readLine();

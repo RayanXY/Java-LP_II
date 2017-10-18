@@ -1,10 +1,9 @@
 public class Person{
 	
-	private String name;
+	private String name, civilStatus;
 	private int age, acceptance;
-	char civilStatus;
 
-	public Person(String name, int age, char civilStatus, int acceptance){
+	public Person(String name, int age, String civilStatus, int acceptance){
 		this.name = name;
 		this.age = age;
 		this.civilStatus = civilStatus;
@@ -19,7 +18,7 @@ public class Person{
 		return age;
 	}
 
-	public char getCivilStatus(){
+	public String getCivilStatus(){
 		return civilStatus;
 	}
 
@@ -35,11 +34,11 @@ public class Person{
 		this.age = age;
 	}
 
-	public void setCivilStatus(){
+	public void setCivilStatus(String civilStatus){
 		this.civilStatus = civilStatus;
 	}
 
-	public void setAcceptance(){
+	public void setAcceptance(int acceptance){
 		this.acceptance = acceptance;
 	}
 
