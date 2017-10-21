@@ -1,9 +1,21 @@
+/**
+ * This class represents a simple Bank Account. 
+ *
+ * @author Rayan Avelino
+ * @version 21.10.2017
+ */
 public class BankAccount{
 	
 	private String name;
 	private int account;
 	private double balance;
 
+	/**
+	 * Creates a Bank Account.
+	 * @param name - The person's name.
+	 * @param account - The account number.
+	 * @param initial_balance - The initial balance of the account.
+	 */
 	public BankAccount(String name, int account, double initial_balance){
 
 		this.name = name;
@@ -12,10 +24,16 @@ public class BankAccount{
 
 	}
 
+	/**
+	 * @return The account number.
+	 */
 	public int getAccount(){
 		return account;
 	}
 
+	/**
+	 * Prints the statement.
+	 */
 	public void statement(){
 
 		System.out.println(">>> BANK STATEMENT");
@@ -25,6 +43,11 @@ public class BankAccount{
 
 	}
 
+	/**
+	 * Withdraws money.
+	 * @param value - The value to be withdrawn.
+	 * @throws ParameterException if the value is bigger than the current balance or is a negative number.
+	 */
 	public void withdraw(double value) throws ParameterException{
 
 		if(value < 0){
@@ -39,6 +62,11 @@ public class BankAccount{
 
 	}
 
+	/**
+	 * Does a deposit.
+	 * @param value - The value to be deposited.
+	 * @throws ParameterException if the value is a negative number.
+	 */
 	public void deposit(double value) throws ParameterException{
 
 		if(value < 0){

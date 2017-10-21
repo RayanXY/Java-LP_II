@@ -1,10 +1,19 @@
+/**
+ * This class represents a simple Calculator. 
+ *
+ * @author Rayan Avelino
+ * @version 21.10.2017
+ */
 public class Calculator{
 
 	private int i, operatorSignal;
 	private String op1, op2, operator;
 	private float a, b, result;
 
-	/// Checks the character is an operator
+	/**
+	 * Checks the character is an operator.
+	 * @param operator - The string to be checked.
+	 */
 	public boolean isOperator(String operator){
 
 		operatorSignal = 0;
@@ -26,8 +35,12 @@ public class Calculator{
 		}
 
 	}
-	
-	/// Validates the expression
+	/**
+	 * Validates the expression.
+	 * @param expression - The line to be validated.
+	 * @return true if the expression is valid.
+	 *         false if the expression is not valid.
+	 */
 	public boolean validateExpression(String expression){
 
 		i = 0;
@@ -75,6 +88,10 @@ public class Calculator{
 
 	}
 
+	/**
+	 * Calculates the expression.
+	 * @return The result of the expression.
+	 */
 	public float calculate(){
 
 		a = 0;

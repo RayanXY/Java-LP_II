@@ -1,5 +1,15 @@
+/**
+ * This class methods validates the inputs. 
+ *
+ * @author Rayan Avelino
+ * @version 21.10.2017
+ */
 public class ValidatePerson{
 
+	/**
+	 * @return true if the string represents a civil status.
+	 *         false if the string doesn't represents a civil status.
+	 */
 	public boolean isStatus(String status){
 
 		if(status.equals("S")){
@@ -16,11 +26,17 @@ public class ValidatePerson{
 
 	}
 	
+	/**
+	 * Validates the line received.
+	 * @return A valid person if the line is right.
+	 * @thorws ParameterException if there is something wrong in the line.
+	 */
 	public Person validate(String line) throws ParameterException{
 
 		int i = 0;
 		int size = line.length();
 
+		/// Getting the name.
 		String name = "";
 		while(i < size){
 
@@ -36,6 +52,7 @@ public class ValidatePerson{
 
 		}
 
+		/// Getting the age.
 		String ageS = "";
 		while(i < size){
 
@@ -53,6 +70,7 @@ public class ValidatePerson{
 
 		}
 
+		/// Getting the civil status.
 		String status = "";
 		while(i < size){
 
@@ -70,6 +88,7 @@ public class ValidatePerson{
 
 		}
 
+		/// Getting the acceptance.
 		String acceptanceS = "";
 		while(i < size){
 
