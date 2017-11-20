@@ -1,0 +1,19 @@
+1ª - Fácil
+Árvores:
+- Árvores Binária: Essa ED é caracterizada por possuir um nós raiz com dois
+ponteiros para duas estruturas diferentes, uma sub-árvore esquerda e direita.
+Assim cada nó só pode ter até dois nós, chamados de folhas.
+- Árovre Binária de Busca: É baseada na Árvore Binária, mas os nós a esquerda
+possuem um valor inferior ao nó raiz e os nós a direita possuem um valor maior.
+- Árvore AVL: É uma Árvore Binária de Busca balanceada, minimzando o número de
+comparações efetuadas no pior caso.
+- Árvore Rubro-Negra: É uma Árvore Binária de Busca que insere e remove de forma
+inteligente, para assegurar que a árvore permaneça aproximadamente balanceada.
+Este balanceamento é feito utilizando um bit extra em cada nó que determina se o
+nó é vermelho ou preto, por isso o nome da Árvore.
+
+2ª - Média
+Árvore Trie x Árvore Patricia: Uma Trie usa cada uma das partes de uma chave, por
+vez, para determinar sub-árvore, já a Patricia escolhe um elemento da chave para
+determinar a sub-árovre. Outra diferença é que a Patricia não contém nós com apenas
+um filho, ou são dois filhos ou é um nó folha.
