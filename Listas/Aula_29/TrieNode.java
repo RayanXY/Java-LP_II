@@ -1,5 +1,11 @@
 import java.util.HashMap;
 
+/**
+ * This class represents a node for the tree. 
+ *
+ * @author Rayan Avelino
+ * @version 21.11.2017
+ */
 public class TrieNode{
 	
 	private char character;

@@ -1,10 +1,19 @@
 import java.util.HashMap;
 import java.util.ArrayList;
 
+/**
+ * This class represents a simple Trie Tree. 
+ *
+ * @author Rayan Avelino
+ * @version 21.11.2017
+ */
 public class Trie{
 
 	private TrieNode root;
 
+	/**
+	 * Creates a Trie Tree.
+	 */
 	public Trie(){
 		root = new TrieNode();
 		root.setParent(new TrieNode());
@@ -126,6 +135,10 @@ public class Trie{
 
 	}
 
+	/**
+	 * Prints all the words in the tree.
+	 * @return An ArrayList of the words.
+	 */
 	public ArrayList<String> print(){
 
 		ArrayList<String> words = new ArrayList<String>();
@@ -140,6 +153,12 @@ public class Trie{
 
 	}
 
+	/**
+	 * The recursive portion of the fucntion above.
+	 * @param words - An ArrayList to store the words.
+	 * @param word - The word about to be checked.
+	 * @param n - The current node.
+	 */
 	private void print(ArrayList<String> words, String word, TrieNode n){
 
 		if(n.isLeaf()){
