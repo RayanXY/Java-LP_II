@@ -74,4 +74,11 @@ public class TrieNode{
 		return leaf;
 	}
 
+	/**
+	 * Resets the children of the node.
+	 */
+	public void resetChildren(){
+		children = new HashMap<Character, TrieNode>();
+	}
+
 }

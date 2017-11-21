@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Trie{
 
@@ -50,7 +51,7 @@ public class Trie{
 	}
 
 	/**
-	 * This method search a word in the tree.
+	 * This method searchs a word in the tree.
 	 * @param word - The word to be searched.
 	 */
 	public boolean search(String word){
@@ -66,10 +67,43 @@ public class Trie{
 	}
 
 	/**
-	 * This method helps the search method.
+	 * This method removes a word in the tree.
 	 * @param word - The word to be searched.
 	 */
-	private TrieNode searcher(String word){
+	public boolean remove(String word){
+
+		TrieNode currentChar = searcher(word);
+
+		if(currentChar != null && currentChar.isLeaf()){
+
+			TrieNode parent = currentChar.getParent();
+			char c = currentChar.getCharacter();
+
+			/// Deleting when there is one child.
+			while(parent.getChildren().size() == 1){
+				parent.resetChildren();
+				currentChar = parent;
+				c = currentChar.getCharacter();
+				parent = currentChar.getParent();
+			}
+
+			/// Deleting the remaining
+			char delete = c;
+			parent.getChildren().entrySet().removeIf(e -> e.getKey().equals(delete));
+
+			return true;
+
+		}
+
+		return false;
+
+	}
+
+	/**
+	 * This method helps the search and remove methods.
+	 * @param word - The word to be searched.
+	 */
+	public TrieNode searcher(String word){
 
 		HashMap<Character, TrieNode> children = root.getChildren();
 
@@ -92,5 +126,32 @@ public class Trie{
 
 	}
 
+	public ArrayList<String> print(){
+
+		ArrayList<String> words = new ArrayList<String>();
+
+		for(TrieNode n : root.getChildren().values()){
+			if(n != null){
+				print(words, Character.toString(n.getCharacter()) + "", n);
+			}
+		}
+
+		return words;
+
+	}
+
+	private void print(ArrayList<String> words, String word, TrieNode n){
+
+		if(n.isLeaf()){
+			words.add(word);
+		}
+
+		for(TrieNode t : n.getChildren().values()){
+			if( t != null){
+				print(words, word + Character.toString(t.getCharacter()), t);
+			}
+		}
+
+	}
 
 }
