@@ -10,18 +10,18 @@ public class Main{
 
 		/// Inserting Tests.
 		System.out.println(">>> Inserting words.");
-		trie.insertWord("Mario");
-		trie.insertWord("Peach");
-		trie.insertWord("Luigi");
-		trie.insertWord("Daisy");
-		trie.insertWord("Leon");
-		trie.insertWord("Ada");
-		trie.insertWord("Nilce");
-		trie.insertWord("Dante");
-		trie.insertWord("Kratos");
-		trie.insertWord("Atena");
-		trie.insertWord("Zeus");
-		trie.insertWord("Calíope");
+		trie.insert("Mario");
+		trie.insert("Peach");
+		trie.insert("Luigi");
+		trie.insert("Daisy");
+		trie.insert("Leon");
+		trie.insert("Ada");
+		trie.insert("Nilce");
+		trie.insert("Dante");
+		trie.insert("Kratos");
+		trie.insert("Atena");
+		trie.insert("Zeus");
+		trie.insert("Calíope");
 
 		System.out.println();
 
@@ -72,15 +72,10 @@ public class Main{
 		System.out.println();
 
 		/// Priting the tree.
-		ArrayList<String> words = trie.print();
-
 		System.out.println(">>> Tree:");
-		for(String w : words){
-			System.out.println(" - " + w);
-		}
+		trie.print();
 
 		System.out.println();
-
 		/// User
 		Scanner read = new Scanner(System.in);
 		/// Creating a new Trie Tree for the user.
@@ -93,19 +88,12 @@ public class Main{
 			if(new_word.equals("exit") || new_word.equals("Exit")){
 				break;
 			}
-			userTrie.insertWord(new_word);
+			userTrie.insert(new_word);
 		}
-
-		System.out.println();
 
 		/// Printing the words inserted by the user.
-		ArrayList<String> user_words = userTrie.print();
-
 		System.out.println(">>> User Tree:");
-		for(String w : user_words){
-			System.out.println(" - " + w);
-		}
-
+		userTrie.print();
 	}
 
 }

@@ -1,17 +1,17 @@
-import java.util.HashMap;
-
 /**
  * This class represents a node for the tree. 
  *
  * @author Rayan Avelino
  * @version 21.11.2017
  */
+import java.util.HashMap;
+
 public class TrieNode{
 	
 	private char character;
 	private TrieNode parent;
 	private HashMap<Character, TrieNode> children = new HashMap<Character, TrieNode>();
-	private boolean leaf;
+	private boolean endOfWord;
 
 	/**
 	 * Default constructor;
@@ -64,20 +64,20 @@ public class TrieNode{
 	}
 
 	/**
-	 * Sets if the node is a leaf.
-	 * @param leaf - True if the node is a leaf.
-	 *               False if the node isn't a leaf. 
+	 * Sets if the node is the end of word.
+	 * @param leaf - True if the node is the end of the word.
+	 *               False if the node isn't the end of the word. 
 	 */ 
-	public void setLeaf(boolean leaf){
-		this.leaf = leaf;
+	public void setEndOfWord(boolean endOfWord){
+		this.endOfWord = endOfWord;
 	}
 
 	/**
-	 * @return True if the node is a leaf.
-	 *         False if the node isn't a leaf.
+	 * @return True if the node is the end of the word.
+	 *         False if the node isn't the end of the word.
 	 */
-	public boolean isLeaf(){
-		return leaf;
+	public boolean isEndOfWord(){
+		return endOfWord;
 	}
 
 	/**

@@ -1,12 +1,12 @@
-import java.util.HashMap;
-import java.util.ArrayList;
-
 /**
  * This class represents a simple Trie Tree. 
  *
  * @author Rayan Avelino
  * @version 21.11.2017
  */
+import java.util.HashMap;
+import java.util.ArrayList;
+
 public class Trie{
 
 	private TrieNode root;
@@ -23,7 +23,7 @@ public class Trie{
 	 * Inserts a word in the tree.
 	 * @param word - The word to be inserted.
 	 */
-	public void insertWord(String word){
+	public void insert(String word){
 
 		/// Retrieving the root's children.
 		HashMap<Character, TrieNode> children = root.getChildren();
@@ -52,7 +52,7 @@ public class Trie{
 
 			/// When it reaches the last character
 			if(i == (word.length()-1)){
-				currentChar.setLeaf(true);
+				currentChar.setEndOfWord(true);
 			}			
 
 		}
@@ -67,7 +67,7 @@ public class Trie{
 
 		TrieNode w = searcher(word);
 
-		if(w != null && w.isLeaf()){
+		if(w != null && w.isEndOfWord()){
 			return true;
 		}
 
@@ -83,7 +83,7 @@ public class Trie{
 
 		TrieNode currentChar = searcher(word);
 
-		if(currentChar != null && currentChar.isLeaf()){
+		if(currentChar != null && currentChar.isEndOfWord()){
 
 			TrieNode parent = currentChar.getParent();
 			char c = currentChar.getCharacter();
@@ -135,40 +135,37 @@ public class Trie{
 
 	}
 
-	/**
-	 * Prints all the words in the tree.
-	 * @return An ArrayList of the words.
-	 */
-	public ArrayList<String> print(){
+	public void print(){
 
-		ArrayList<String> words = new ArrayList<String>();
-
-		for(TrieNode n : root.getChildren().values()){
-			if(n != null){
-				print(words, Character.toString(n.getCharacter()) + "", n);
-			}
-		}
-
-		return words;
+		String word = new String();
+		print(root, word);
+		System.out.println();
 
 	}
 
-	/**
-	 * The recursive portion of the fucntion above.
-	 * @param words - An ArrayList to store the words.
-	 * @param word - The word about to be checked.
-	 * @param n - The current node.
-	 */
-	private void print(ArrayList<String> words, String word, TrieNode n){
+	private void print(TrieNode node, String word){
 
-		if(n.isLeaf()){
-			words.add(word);
-		}
+		HashMap<Character, TrieNode> children = node.getChildren();
 
-		for(TrieNode t : n.getChildren().values()){
-			if( t != null){
-				print(words, word + Character.toString(t.getCharacter()), t);
+		for(TrieNode n : children.values()){
+
+			if(!n.getChildren().isEmpty()){
+
+				word = word + n.getCharacter();
+				if(n.isEndOfWord()){
+					System.out.println(" - " + word);
+				}
+				print(n, word);
+				word = word.substring(0, word.length()-1);
+
+			}else{
+
+				word = word + n.getCharacter();
+				System.out.println(" - " + word);
+				word = word.substring(0, word.length()-1);
+
 			}
+
 		}
 
 	}

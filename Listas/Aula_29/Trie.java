@@ -1,12 +1,12 @@
-import java.util.HashMap;
-import java.util.ArrayList;
-
 /**
  * This class represents a simple Trie Tree. 
  *
  * @author Rayan Avelino
  * @version 21.11.2017
  */
+import java.util.HashMap;
+import java.util.ArrayList;
+
 public class Trie{
 
 	private TrieNode root;
@@ -52,7 +52,7 @@ public class Trie{
 
 			/// When it reaches the last character
 			if(i == (word.length()-1)){
-				currentChar.setLeaf(true);
+				currentChar.setEndOfWord(true);
 			}			
 
 		}
@@ -67,7 +67,7 @@ public class Trie{
 
 		TrieNode w = searcher(word);
 
-		if(w != null && w.isLeaf()){
+		if(w != null && w.isEndOfWord()){
 			return true;
 		}
 
@@ -83,7 +83,7 @@ public class Trie{
 
 		TrieNode currentChar = searcher(word);
 
-		if(currentChar != null && currentChar.isLeaf()){
+		if(currentChar != null && currentChar.isEndOfWord()){
 
 			TrieNode parent = currentChar.getParent();
 			char c = currentChar.getCharacter();
@@ -161,7 +161,7 @@ public class Trie{
 	 */
 	private void print(ArrayList<String> words, String word, TrieNode n){
 
-		if(n.isLeaf()){
+		if(n.isEndOfWord()){
 			words.add(word);
 		}
 

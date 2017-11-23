@@ -73,7 +73,6 @@ public class Main{
 
 		/// Priting the tree.
 		ArrayList<String> words = trie.print();
-
 		System.out.println(">>> Tree:");
 		for(String w : words){
 			System.out.println(" - " + w);
