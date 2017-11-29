@@ -10,8 +10,9 @@ public class TrieNode{
 	
 	private char character;
 	private TrieNode parent;
-	private HashMap<Character, TrieNode> children = new HashMap<Character, TrieNode>();
 	private boolean endOfWord;
+	private HashMap<Integer, Integer> registry = new HashMap<Integer, Integer>();
+	private HashMap<Character, TrieNode> children = new HashMap<Character, TrieNode>();
 
 	/**
 	 * Default constructor;
@@ -48,6 +49,13 @@ public class TrieNode{
 	}
 
 	/**
+	 * @return The registry of the node.
+	 */
+	public HashMap<Integer, Integer> getRegistry(){
+		return registry;
+	}
+
+	/**
 	 * Sets a character for the node.
 	 * @param character - The character to be addressed.
 	 */
@@ -61,6 +69,14 @@ public class TrieNode{
 	 */ 
 	public void setParent(TrieNode parent){
 		this.parent = parent;
+	}
+
+	/**
+	 * Sets the first registry for the node.
+	 * @param line - The line where the word appears.
+	 */
+	public void setFirstRegistry(int line){
+		registry.put(line, 1);
 	}
 
 	/**
@@ -86,5 +102,7 @@ public class TrieNode{
 	public void resetChildren(){
 		children = new HashMap<Character, TrieNode>();
 	}
+
+
 
 }

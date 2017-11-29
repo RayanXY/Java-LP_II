@@ -4,8 +4,8 @@
  * @author Rayan Avelino
  * @version 21.11.2017
  */
+import java.util.Set;
 import java.util.HashMap;
-import java.util.ArrayList;
 
 public class Trie{
 
@@ -23,37 +23,57 @@ public class Trie{
 	 * Inserts a word in the tree.
 	 * @param word - The word to be inserted.
 	 */
-	public void insert(String word){
+	public void insert(String word, int line){
 
-		/// Retrieving the root's children.
-		HashMap<Character, TrieNode> children = root.getChildren();
+		/// Verifies if the word already exists.
+		if(search(word)){
+	
+			TrieNode n = lastLetter(word);
 
-		/// The parent node.
-		TrieNode parent = root;
+			/// Retrieving the registry.
+			HashMap<Integer, Integer> registry = n.getRegistry();
 
-		/// Storing the word.
-		for(int i = 0; i < word.length(); i++){
-
-			TrieNode currentChar = null;
-
-			char c = word.charAt(i);
-
-			/// Checking if the Key 'c' already exists.
-			if(children.containsKey(c)){
-				currentChar = children.get(c);
+			///Checks if the word is in the same line. 
+			if(registry.containsKey(line)){
+				registry.put(line, registry.get(line)+1);
 			}else{
-				currentChar = new TrieNode(c);
-				children.put(c, currentChar);
-				currentChar.setParent(parent);
+				registry.put(line, 1);
 			}
 
-			parent = currentChar;
-			children = currentChar.getChildren();
+		}else{
 
-			/// When it reaches the last character
-			if(i == (word.length()-1)){
-				currentChar.setEndOfWord(true);
-			}			
+			/// Retrieving the root's children.
+			HashMap<Character, TrieNode> children = root.getChildren();
+
+			/// The parent node.
+			TrieNode parent = root;
+
+			/// Storing the word.
+			for(int i = 0; i < word.length(); i++){
+
+				TrieNode currentChar = null;
+
+				char c = word.charAt(i);
+
+				/// Checking if the Key 'c' already exists.
+				if(children.containsKey(c)){
+					currentChar = children.get(c);
+				}else{
+					currentChar = new TrieNode(c);
+					children.put(c, currentChar);
+					currentChar.setParent(parent);
+				}
+
+				parent = currentChar;
+				children = currentChar.getChildren();
+
+				/// When it reaches the last character.
+				if(i == (word.length()-1)){
+					currentChar.setFirstRegistry(line);
+					currentChar.setEndOfWord(true);
+				}			
+
+			}
 
 		}
 
@@ -62,6 +82,8 @@ public class Trie{
 	/**
 	 * This method searchs a word in the tree.
 	 * @param word - The word to be searched.
+	 * @return True if the word was found.
+	 *         False if the word wasn't found. 
 	 */
 	public boolean search(String word){
 
@@ -76,40 +98,7 @@ public class Trie{
 	}
 
 	/**
-	 * This method removes a word in the tree.
-	 * @param word - The word to be searched.
-	 */
-	public boolean remove(String word){
-
-		TrieNode currentChar = searcher(word);
-
-		if(currentChar != null && currentChar.isEndOfWord()){
-
-			TrieNode parent = currentChar.getParent();
-			char c = currentChar.getCharacter();
-
-			/// Deleting when there is one child.
-			while(parent.getChildren().size() == 1){
-				parent.resetChildren();
-				currentChar = parent;
-				c = currentChar.getCharacter();
-				parent = currentChar.getParent();
-			}
-
-			/// Deleting the remaining
-			char delete = c;
-			parent.getChildren().entrySet().removeIf(e -> e.getKey().equals(delete));
-
-			return true;
-
-		}
-
-		return false;
-
-	}
-
-	/**
-	 * This method helps the search and remove methods.
+	 * This method helps the search methods.
 	 * @param word - The word to be searched.
 	 */
 	public TrieNode searcher(String word){
@@ -135,6 +124,83 @@ public class Trie{
 
 	}
 
+	/**
+	 * This method removes a word in the tree.
+	 * @param word - The word to be searched.
+	 */
+	public boolean remove(String word){
+
+		if(search(word) == false){
+			return false;
+		}
+
+		TrieNode currentChar = lastLetter(word);
+		if(currentChar.getChildren() != null){
+			currentChar.setEndOfWord(false);
+			return true;
+		}
+
+		remove(currentChar);
+		return true;
+
+	}
+
+	/**
+	 * The recursive portion of the fucntion above.
+	 * @param node - The current node.
+	 */
+	private void remove(TrieNode node){
+
+		TrieNode aux = node.getParent();
+		if(aux.getChildren().size() == 1 && !aux.isEndOfWord()){
+			remove(aux);
+		}else{
+			node = null;
+		}
+
+	}
+
+	/**
+	 * Helps the remove to get in the node that has the last letter of the word
+	 * @param word - word to found the last letter
+	 * @return the node that has the last letter of the word
+	 */
+	public TrieNode lastLetter(String word){
+
+		if(!search(word)){
+			return null;
+		}else{
+
+			TrieNode nowNode = root;
+			HashMap<Character,TrieNode> nodeChildren = nowNode.getChildren();
+			TrieNode aux = null;
+
+			for(int i = 0; i < word.length(); ++i){
+
+				aux = null;
+				char char_ = word.charAt(i);
+
+				if(nodeChildren.containsKey(char_)){
+					aux = nodeChildren.get(char_);
+					if(i == (word.length() - 1) ){
+						break;
+					}
+				}
+				nowNode = aux;
+				nodeChildren = nowNode.getChildren();
+
+			}
+
+			return aux;
+
+		}
+
+	}
+
+
+    /**
+	 * Prints all the words in the tree.
+	 */
 	public void print(){
 
 		String word = new String();
@@ -143,6 +209,11 @@ public class Trie{
 
 	}
 
+	/**
+	 * The recursive portion of the fucntion above.
+	 * @param node - The current node.
+	 * @param word - The word about to be checked.
+	 */
 	private void print(TrieNode node, String word){
 
 		HashMap<Character, TrieNode> children = node.getChildren();
@@ -153,7 +224,9 @@ public class Trie{
 
 				word = word + n.getCharacter();
 				if(n.isEndOfWord()){
-					System.out.println(" - " + word);
+					HashMap<Integer, Integer> registry = n.getRegistry();
+					System.out.println(" > " + word + ":");
+					printMap(registry);
 				}
 				print(n, word);
 				word = word.substring(0, word.length()-1);
@@ -161,11 +234,29 @@ public class Trie{
 			}else{
 
 				word = word + n.getCharacter();
-				System.out.println(" - " + word);
+				HashMap<Integer, Integer> registry = n.getRegistry();
+				System.out.println(" > " + word + ":");
+				printMap(registry);
 				word = word.substring(0, word.length()-1);
 
 			}
 
+		}
+
+	}
+
+	/**
+	 * Auxiliar print to print the lines and occurencies.
+	 * @param hashmap - The hashmap containing the registry.
+	 */
+	private void printMap(HashMap<Integer, Integer> hashmap){
+
+		Set<Integer> map = hashmap.keySet();
+
+		Integer[] keys = map.toArray(new Integer[map.size()]);
+
+		for(int key : keys){
+			System.out.println("    - Line: " + key + " Ocurrency: " + hashmap.get(key));
 		}
 
 	}
