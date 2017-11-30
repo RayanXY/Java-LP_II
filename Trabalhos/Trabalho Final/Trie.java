@@ -23,7 +23,7 @@ public class Trie{
 	 * Inserts a word in the tree.
 	 * @param word - The word to be inserted.
 	 */
-	public void insert(String word, int line){
+	public void insert(String file, String word, int line){
 
 		/// Verifies if the word already exists.
 		if(search(word)){
@@ -31,13 +31,24 @@ public class Trie{
 			TrieNode n = lastLetter(word);
 
 			/// Retrieving the registry.
-			HashMap<Integer, Integer> registry = n.getRegistry();
+			HashMap<String, HashMap<Integer, Integer>> registry = n.getRegistry();
 
-			///Checks if the word is in the same line. 
-			if(registry.containsKey(line)){
-				registry.put(line, registry.get(line)+1);
+			/// Checks if it's in the same file.
+			if(registry.containsKey(file)){
+
+				HashMap<Integer, Integer> lines = registry.get(file);
+
+				/// Checks if it's in the same line.
+				if(lines.containsKey(line)){
+					lines.put(line, lines.get(line)+1);
+					registry.put(file, lines);
+				}else{
+					lines.put(line, 1);
+					registry.put(file, lines);
+				}
+
 			}else{
-				registry.put(line, 1);
+				n.setFirstRegistry(file, line);
 			}
 
 		}else{
@@ -69,7 +80,7 @@ public class Trie{
 
 				/// When it reaches the last character.
 				if(i == (word.length()-1)){
-					currentChar.setFirstRegistry(line);
+					currentChar.setFirstRegistry(file, line);
 					currentChar.setEndOfWord(true);
 				}			
 
@@ -224,7 +235,7 @@ public class Trie{
 
 				word = word + n.getCharacter();
 				if(n.isEndOfWord()){
-					HashMap<Integer, Integer> registry = n.getRegistry();
+					HashMap<String, HashMap<Integer, Integer>> registry = n.getRegistry();
 					System.out.println(" > " + word + ":");
 					printMap(registry);
 				}
@@ -234,7 +245,7 @@ public class Trie{
 			}else{
 
 				word = word + n.getCharacter();
-				HashMap<Integer, Integer> registry = n.getRegistry();
+				HashMap<String, HashMap<Integer, Integer>> registry = n.getRegistry();
 				System.out.println(" > " + word + ":");
 				printMap(registry);
 				word = word.substring(0, word.length()-1);
@@ -249,14 +260,26 @@ public class Trie{
 	 * Auxiliar print to print the lines and occurencies.
 	 * @param hashmap - The hashmap containing the registry.
 	 */
-	private void printMap(HashMap<Integer, Integer> hashmap){
+	private void printMap(HashMap<String, HashMap<Integer, Integer>> hashmap){
 
-		Set<Integer> map = hashmap.keySet();
+		Set<String> map = hashmap.keySet();
+		String[] files = map.toArray(new String[map.size()]);
 
-		Integer[] keys = map.toArray(new Integer[map.size()]);
+		for(String file : files){
 
-		for(int key : keys){
-			System.out.println("    - Line: " + key + " Ocurrency: " + hashmap.get(key));
+			System.out.println("   - " + file);
+
+			HashMap<Integer, Integer> lines = hashmap.get(file);
+
+			Set<Integer> lineSet = lines.keySet();
+			Integer[] lineKeys = lineSet.toArray(new Integer[lines.size()]);
+
+			for(Integer line : lineKeys){
+
+				System.out.println("     - Line: " + line + " Ocurrency: " + lines.get(line));
+				
+			}
+
 		}
 
 	}
