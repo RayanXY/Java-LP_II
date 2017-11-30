@@ -1,8 +1,8 @@
 /**
  * This class represents a node for the tree. 
  *
- * @author Rayan Avelino
- * @version 21.11.2017
+ * @author Anderson Caio da Fonseca Santos, Erick de Oliveira Silva and Rayan Avelino dos Santos 
+ * @version 30.11.2017
  */
 import java.util.HashMap;
 
@@ -105,7 +105,5 @@ public class TrieNode{
 	public void resetChildren(){
 		children = new HashMap<Character, TrieNode>();
 	}
-
-
 
 }

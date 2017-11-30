@@ -1,8 +1,8 @@
 /**
  * This class represents a simple Trie Tree. 
  *
- * @author Rayan Avelino
- * @version 21.11.2017
+ * @author Anderson Caio da Fonseca Santos, Erick de Oliveira Silva and Rayan Avelino dos Santos 
+ * @version 30.11.2017
  */
 import java.util.Set;
 import java.util.HashMap;
