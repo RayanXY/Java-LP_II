@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class Reader{
 	
 	private BufferedReader reader;
-	private static String[] files = {"files/apple.txt", "files/google.txt", "files/microsoft.txt"};
+	private static String[] files = {"files/apple.txt", "files/google.txt"};
 
 	/**
 	 * Default constructor;

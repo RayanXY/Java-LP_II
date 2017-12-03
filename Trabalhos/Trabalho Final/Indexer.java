@@ -4,6 +4,11 @@
  * @author Anderson Caio da Fonseca Santos, Erick de Oliveira Silva and Rayan Avelino dos Santos 
  * @version 30.11.2017
  */
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.io.IOException;
+
 public class Indexer{
 
 	private Trie trie;
@@ -25,6 +30,14 @@ public class Indexer{
 	 */
 	public void start(){
 		reader.readFile(trie);
+	}
+
+	public void save(){
+		try {
+            trie.save();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
 	}
 
 }

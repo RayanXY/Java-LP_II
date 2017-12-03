@@ -1,7 +1,10 @@
+package src;
 /**
  * This class represents a node for the tree. 
  *
- * @author Anderson Caio da Fonseca Santos, Erick de Oliveira Silva and Rayan Avelino dos Santos 
+ * @author Anderson Caio da Fonseca Santos.
+ * @author Erick de Oliveira Silva.
+ * @author Rayan Avelino dos Santos.
  * @version 30.11.2017
  */
 import java.util.HashMap;
@@ -84,7 +87,7 @@ public class TrieNode{
 
 	/**
 	 * Sets if the node is the end of word.
-	 * @param leaf - True if the node is the end of the word.
+	 * @param endOfWord - True if the node is the end of the word.
 	 *               False if the node isn't the end of the word. 
 	 */ 
 	public void setEndOfWord(boolean endOfWord){
@@ -105,5 +108,5 @@ public class TrieNode{
 	public void resetChildren(){
 		children = new HashMap<>();
 	}
-
+        
 }
