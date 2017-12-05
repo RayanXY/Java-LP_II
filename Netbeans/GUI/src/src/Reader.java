@@ -27,8 +27,22 @@ public class Reader {
         files = new ArrayList<>();
     }
     
+    /**
+     * Adds the file to the tree.
+     * @param path - The directory where the file is.
+     */
     public void addFile(File path){
         files.add(path);
+    }
+    
+    /**
+     * Checks if the file is already stored.
+     * @param file thar will be checked.
+     * @return True if the file exists
+     *         False otherwise.
+     */
+    public boolean fileExists(File file){
+        return files.contains(file);
     }
 
     /**

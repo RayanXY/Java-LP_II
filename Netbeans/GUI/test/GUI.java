@@ -50,6 +50,11 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel2.setText("SEARCH HISTORY");
 
+        liHistory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                liHistoryMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(liHistory);
 
         btHisClose.setText("Close");
@@ -278,6 +283,19 @@ public class GUI extends javax.swing.JFrame {
             String current = "teste3";
             model.addElement( current );
     }//GEN-LAST:event_btOrSearchActionPerformed
+
+    private void liHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_liHistoryMouseClicked
+        
+        if( evt.getClickCount() == 2 )
+        {
+            String selected = liHistory.getSelectedValue();
+        
+            historyFrame.setVisible( false );
+        
+            tfWords.setText( selected );
+            tfWords.setForeground( Color.BLACK );
+        }
+    }//GEN-LAST:event_liHistoryMouseClicked
 
     /**
      * @param args the command line arguments

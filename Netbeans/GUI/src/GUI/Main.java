@@ -3,10 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/**
+ * This class is where the files will be read.
+ *
+ * @author Anderson Caio da Fonseca Santos.
+ * @author Erick de Oliveira Silva.
+ * @author Rayan Avelino dos Santos.
+ * @version 04.11.2017
+ */
 package GUI;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -22,16 +33,21 @@ import src.*;
 public class Main extends javax.swing.JFrame {
 
     private JFileChooser chooser = new JFileChooser();
-    private Trie trie = new Trie();
-    private Indexer indexer = new Indexer(trie);
+    private Indexer indexer = new Indexer();
+    private DefaultListModel histModel = new DefaultListModel();
+
     /**
      * Creates new form SearcherTest
+     *
+     * @throws java.io.IOException
      */
-    public Main() {
+    public Main() throws IOException {
         initComponents();
-        indexer.start();
         setResizable(false);
         setLocationRelativeTo(null);
+        indexer.start();
+        txA_result.setEditable(false);
+        
     }
 
     /**
@@ -43,9 +59,14 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        historyFrame = new javax.swing.JFrame();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        li_history = new javax.swing.JList<>();
+        bt_historyClose = new javax.swing.JButton();
+        bt_clear = new javax.swing.JButton();
         lb_searcher = new javax.swing.JLabel();
         fd_search = new javax.swing.JTextField();
-        bt_search = new javax.swing.JButton();
         bt_and_search = new javax.swing.JButton();
         bt_or_search = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -53,26 +74,76 @@ public class Main extends javax.swing.JFrame {
         bt_add_files = new javax.swing.JButton();
         bt_close = new javax.swing.JButton();
         bt_history = new javax.swing.JButton();
+        bt_remove = new javax.swing.JButton();
+        bt_search = new javax.swing.JButton();
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel2.setText("SEARCH HISTORY");
+
+        li_history.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                li_historyMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(li_history);
+
+        bt_historyClose.setText("Close");
+        bt_historyClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_historyCloseActionPerformed(evt);
+            }
+        });
+
+        bt_clear.setText("Clear");
+        bt_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_clearActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout historyFrameLayout = new javax.swing.GroupLayout(historyFrame.getContentPane());
+        historyFrame.getContentPane().setLayout(historyFrameLayout);
+        historyFrameLayout.setHorizontalGroup(
+            historyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(historyFrameLayout.createSequentialGroup()
+                .addGroup(historyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(historyFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(bt_clear)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bt_historyClose))
+                    .addGroup(historyFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, historyFrameLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(90, 90, 90))
+        );
+        historyFrameLayout.setVerticalGroup(
+            historyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(historyFrameLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(historyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_historyClose)
+                    .addComponent(bt_clear))
+                .addGap(27, 27, 27))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
         });
 
         lb_searcher.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        lb_searcher.setText("Searcher");
-
-        bt_search.setText("Search");
-        bt_search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_searchActionPerformed(evt);
-            }
-        });
+        lb_searcher.setText("SEARCHER");
 
         bt_and_search.setText("AND search");
         bt_and_search.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +184,20 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        bt_remove.setText("Remove");
+        bt_remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_removeActionPerformed(evt);
+            }
+        });
+
+        bt_search.setText("Simple Search");
+        bt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_searchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,10 +213,12 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(fd_search, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bt_and_search)
-                        .addGap(18, 126, Short.MAX_VALUE)
-                        .addComponent(bt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 126, Short.MAX_VALUE)
-                        .addComponent(bt_or_search))
+                        .addGap(18, 18, 18)
+                        .addComponent(bt_or_search)
+                        .addGap(18, 18, 18)
+                        .addComponent(bt_search)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                        .addComponent(bt_remove))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bt_add_files, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -151,6 +238,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_and_search)
                     .addComponent(bt_or_search)
+                    .addComponent(bt_remove)
                     .addComponent(bt_search))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,94 +253,164 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
-
-        String word = fd_search.getText().toLowerCase();
-        if(trie.search(word)){
-            txA_result.setText(trie.print(word));
-        }else{
-            JOptionPane.showMessageDialog(null, "Word not found");
-        }
-       
-        
-    }//GEN-LAST:event_bt_searchActionPerformed
-
     private void bt_add_filesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_add_filesActionPerformed
 
         /// Staritng on the files directory.
         chooser.setCurrentDirectory(new File("/home/rayan/Codes/Java/Netbeans/GUI/src/files/"));
-        
-        if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
-            indexer.addFile(f);
+            if (indexer.fileExists(f)) {
+                JOptionPane.showMessageDialog(null, "File already in database");
+            } else {
+                indexer.addFile(f);
+                try {
+                    indexer.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
-        indexer.start();
-        
+
     }//GEN-LAST:event_bt_add_filesActionPerformed
 
     private void bt_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_closeActionPerformed
-        
-        // sets the label of showMessageDialog okButton to "Start" and cancelButton to "Exit"
-    	UIManager.put("OptionPane.okButtonText", "Yes");
-    	UIManager.put("OptionPane.cancelButtonText", "No");
-        // guards the number of button pressed: 0 for Start, 1 for Exit
-    	int option = JOptionPane.showConfirmDialog( null, "Do you really want to close?", "Searcher", 2 );
-    	
-    	// if option isn't 0 then exits of the searcher
-    	if( option == 0 )
-        {
-            // close the application
+
+        /// Sets the label of showMessageDialog okButton to "Start" and cancelButton to "Exit"
+        UIManager.put("OptionPane.okButtonText", "Yes");
+        UIManager.put("OptionPane.cancelButtonText", "No");
+        /// Guards the number of button pressed: 0 for Start, 1 for Exit
+        int option = JOptionPane.showConfirmDialog(null, "Do you really want to close?", "Searcher", 2);
+
+        /// If option isn't 0 then exits of the searcher
+        if (option == 0) {
+            /// Creating the backup file.
+            try {
+                indexer.save();
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            /// Closes the application
             System.exit(0);
         }
-        
+
     }//GEN-LAST:event_bt_closeActionPerformed
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowClosed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
-    }//GEN-LAST:event_formWindowClosing
-
     private void bt_historyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_historyActionPerformed
-        try {
-            trie.save();
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        li_history.setModel(histModel);
+        /// Sets the hist frame size
+        historyFrame.setSize(356, 361);
+        /// Sets the frame as visible0
+        historyFrame.setVisible(true);
     }//GEN-LAST:event_bt_historyActionPerformed
 
     private void bt_and_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_and_searchActionPerformed
-        
-        /// Getting the words.
-        String words = fd_search.getText().toLowerCase();
-        
-        /// Spliting the words for search.
-        String[] split_words = words.split("\\s");
-        for(String word : split_words){
-            
-        }
-        
-    }//GEN-LAST:event_bt_and_searchActionPerformed
 
-    private void bt_or_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_or_searchActionPerformed
-        
         String result = new String();
         /// Getting the words.
         String words = fd_search.getText().toLowerCase();
-        
+        if (indexer.and(words)) {
+            /// Spliting the words for search.
+            String[] split_words = words.split("\\s");
+            /// Printing each word.
+            for (String word : split_words) {
+                result = result + indexer.print(word);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Words not found");
+            txA_result.setText(null);
+        }
+
+        txA_result.setText(result);
+        /// Adding on history
+        histModel.addElement(fd_search.getText());
+    }//GEN-LAST:event_bt_and_searchActionPerformed
+
+    private void bt_or_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_or_searchActionPerformed
+
+        String result = new String();
+        /// Getting the words.
+        String words = fd_search.getText().toLowerCase();
         /// Spliting the words for search.
         String[] split_words = words.split("\\s");
-        
         /// Searching each word.
-        for(String word : split_words){
-            if(trie.search(word)){
-                result = result + trie.print(word);
+        for (String word : split_words) {
+            if (indexer.search(word)) {
+                result = result + indexer.print(word);
             }
         }
         txA_result.setText(result);
+        /// Adding on history
+        histModel.addElement(fd_search.getText());
     }//GEN-LAST:event_bt_or_searchActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            indexer.save();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void bt_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_removeActionPerformed
+
+        String result = new String();
+        /// Getting the word.
+        String words = fd_search.getText().toLowerCase();
+        /// Spliting the words for search.
+        String[] split_words = words.split("\\s");
+        /// Searching each word.
+        for (String word : split_words) {
+            if (indexer.remove(word)) {
+                result = result + word + " removed\n";
+            } else {
+                result = result + word + " not found\n";
+            }
+        }
+
+    }//GEN-LAST:event_bt_removeActionPerformed
+
+    private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
+
+        /// Getting the words.
+        String words = fd_search.getText().toLowerCase();
+        /// Spliting the words for search.
+        String[] split_words = words.split("\\s");
+        /// Searching the word.
+        if (indexer.search(split_words[0])) {
+            txA_result.setText(indexer.print(split_words[0]));
+        } else {
+            JOptionPane.showMessageDialog(null, "Word not found");
+            txA_result.setText(null);
+        }
+        /// Adding on history
+        histModel.addElement(fd_search.getText());
+    }//GEN-LAST:event_bt_searchActionPerformed
+
+    private void li_historyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_li_historyMouseClicked
+
+        if (evt.getClickCount() == 2) {
+            String selected = li_history.getSelectedValue();
+
+            historyFrame.setVisible(false);
+
+            fd_search.setText(selected);
+            fd_search.setForeground(Color.BLACK);
+        }
+
+    }//GEN-LAST:event_li_historyMouseClicked
+
+    private void bt_historyCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_historyCloseActionPerformed
+        /// Sets the frame as invisible
+        historyFrame.setVisible(false);
+        historyFrame.dispose();
+    }//GEN-LAST:event_bt_historyCloseActionPerformed
+
+    private void bt_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_clearActionPerformed
+        /// Clears the model
+        histModel = new DefaultListModel();
+        li_history.setModel(histModel);
+    }//GEN-LAST:event_bt_clearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -285,8 +443,12 @@ public class Main extends javax.swing.JFrame {
         /* Create and di// TODO add your handling code here:splay the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
-                
+                try {
+                    new Main().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
         });
     }
@@ -294,13 +456,20 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_add_files;
     private javax.swing.JButton bt_and_search;
+    private javax.swing.JButton bt_clear;
     private javax.swing.JButton bt_close;
     private javax.swing.JButton bt_history;
+    private javax.swing.JButton bt_historyClose;
     private javax.swing.JButton bt_or_search;
+    private javax.swing.JButton bt_remove;
     private javax.swing.JButton bt_search;
     private javax.swing.JTextField fd_search;
+    private javax.swing.JFrame historyFrame;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lb_searcher;
+    private javax.swing.JList<String> li_history;
     private javax.swing.JTextArea txA_result;
     // End of variables declaration//GEN-END:variables
 }
